@@ -55,7 +55,7 @@ class Optimization_For_Reprojection(nn.Module):
         with open(json_path, 'r') as f:
             camera_params = json.load(f)        
         for cam_name, cam_data in camera_params.items():
-            intr_dict[cam_name + '.png'] = np.array(cam_data["intrinsic"])
+            intr_dict[cam_name] = np.array(cam_data["intrinsic"])
         return intr_dict
 
     # tag_wpts:[Batch, HW, 3]
@@ -413,7 +413,6 @@ if __name__ == "__main__":
               "intrinsics": False,           # estimate intrinsics
               "extrinsics": True,            # estimate extrinsics
               "intrinsics_path": "data/table/camera_params.json",
-              "batch": 1,
               "total_step": 5000,
               "learning_rate": 0.1,
               "device": 'cuda',              
